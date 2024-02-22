@@ -21,7 +21,12 @@ public class ProgramacionBaseDatos {
         BaseDatos bd = new BaseDatos(nameDB, USER, PASS);
         
         bd.Conecta();
+       
+        //bd.consultaPrueba2();
+
+        bd.describe("customers");
         
         bd.Desconecta();
+        
     }
 }
