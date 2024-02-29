@@ -36,7 +36,7 @@ public class BaseDatos {
             conexion = DriverManager.getConnection(URL + nameDB, USER, PASS);
             System.out.println("Conexión establecida...");
         } catch (SQLException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -105,7 +105,6 @@ public class BaseDatos {
 
         int n_columnas = 0;
 
-        int i = 0;
 
         try {
 
@@ -119,7 +118,7 @@ public class BaseDatos {
 
             columnas = new String[n_columnas];
 
-            for (i = 1; i <= n_columnas; i++) {
+            for (int i = 1; i <= n_columnas; i++) {
 
                 columnas[i - 1] = metadatos.getColumnName(i);
 
@@ -135,4 +134,57 @@ public class BaseDatos {
 
     }
 
+    public void describeAllDB() {
+
+
+        
+         try {
+
+            //He puesto una bd que debe existir siempre
+
+            // que es la bd "mysql"
+
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/mysql", "root", "123qweASD_");
+
+            System.out.println("Conexión realizada con éxito");
+
+            Statement stmt = conexion.createStatement();
+
+            //Retrieving the data
+
+            ResultSet rs = stmt.executeQuery("Show Databases");
+
+            System.out.println("List of databases: ");
+
+            while(rs.next()) {
+
+              
+                
+            System.out.print(rs.getString(1));
+             
+            
+            
+            System.out.println();
+
+            }
+            
+
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+
+
 }
+
+    
+    
+    
+    
+    
+}
+
+ 
